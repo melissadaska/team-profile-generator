@@ -3,7 +3,7 @@ const Engineer = require("../lib/Engineer")
 test('Create GitHub account', () => {
     const testValue = "GitHubUser";
     const member = new Engineer("Dean", 1, "email@test.com", testValue);
-    expect(member.github).toBe(testValue);
+    expect(member.gitHub).toBe(testValue);
 });
 
 test("getRole() to return \"Engineer\"", () => {
