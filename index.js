@@ -66,12 +66,12 @@ function addMember() {
             }])
             .then(function({roleInfo, addMembers}) {
                 let newMember;
-                if (role === "Engineer" {
+                if (role === "Engineer") {
                     newMember = new Engineer(name, id, email, roleInfo);
                 } else if (role === "Intern") {
-                    new Member = new Intern(name, id, email, roleInfo);
+                    newMember = new Intern(name, id, email, roleInfo);
                 } else {
-                    new Member = new Manager(name, id, email, roleInfo);
+                    newMember = new Manager(name, id, email, roleInfo);
                 }
                 teamMembers.push(newMember);
                 addHTML(newMember)
@@ -79,7 +79,7 @@ function addMember() {
                     if (addMembers === "yes") {
                         addMember();
                     } else {
-                        // call finalizeHTML()
+                        finalizeHTML();
                     }
                 })
             })
@@ -95,15 +95,45 @@ function initializeHTML() {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <title>Team Profile</title>
+        <style>
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .card {
+                padding: 20px;
+                border-radius: 6px;
+                background-color: white;
+                color: powderblue;
+                margin: 20px;
+            }
+            
+            .text {
+                padding: 20px;
+                border-radius: 6px;
+                background-color: white;
+                color: black;
+                margin: 20px;
+            }
+            
+            .col {
+                flex: 1;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-dark mb-5">
-            <span class="navbar-brand mb-0 h1 w-100 text-center">Team Profile</span>
+        <nav class="navbar navbar-dark bg-dark justify-content-center align-items-center">
+            <span class="navbar-brand mb-0 h1"><h1>My Team Profile</h1></span>
         </nav>
-        <div class="container">
-            <div class="row">`;
+        <div class="row">`;
+            
     fs.writeFile("./output/teamprofile.html", html, function(err) {
         if (err) {
             console.log(err);
@@ -113,8 +143,83 @@ function initializeHTML() {
 
 
 // add function that adds each member to HTML
+function addHTML(member) {
+    return new Promise(function(resolve, reject) {
+        const name = member.getName();
+        const role = member.getRole();
+        const id = member.getId();
+        const email = member.getEmail();
+        let data = "";
+        if(role === "Engineer") {
+            const gitHub = member.getGithub();
+            data = `<div class="card bg-dark justify-content-center align-items-center" style="width: 18rem;">
+            <div class="col card-header">
+                <h4>${name}</h4>
+            </div>
+            <div class="col card-header">
+                <h4>Engineer</h4>
+            </div>
+            <ul class="list-group list-group-flush text">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Email: ${email}</li>
+                <li class="list-group-item">GitHub: ${gitHub}</li>
+            </ul>
+        </div>`;
+        } else if (role === "Intern") {
+            const school = member.getSchool();
+            data = `<div class="card bg-dark justify-content-center align-items-center" style="width: 18rem;">
+            <div class="col card-header">
+                <h4>${name}</h4>
+            </div>
+            <div class="col card-header">
+                <h4>Intern</h4>
+            </div>
+            <ul class="list-group list-group-flush text">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Email: ${email}</li>
+                <li class="list-group-item">School: ${school}</li>
+            </ul>
+        </div>`;
+        } else {
+            const officeNumber = member.getOfficeNumber();
+            data = `<div class="card bg-dark justify-content-center align-items-center" style="width: 18rem;">
+            <div class="col card-header">
+                <h4>${name}</h4>
+            </div>
+            <div class="col card-header">
+                <h4>Manager</h4>
+            </div>
+            <ul class="list-group list-group-flush text">
+                <li class="list-group-item">ID: ${id}</li>
+                <li class="list-group-item">Email: ${email}</li>
+                <li class="list-group-item">Office Number: ${officeNumber}</li>
+            </ul>
+        </div>`;
+        }
+        fs.appendFile("./output/teamprofile.html", data, function (err) {
+            if(err) {
+                return reject(err);
+            };
+            return resolve();
+        });
+    });
+}
 
 // add function to finalizeHTML
+function finalizeHTML() {
+    const html = ` </div>
+    </div>
+    
+    </body>
+    </html>`;
+
+    fs.appendFile("./output/teamprofile.html", html, function (err) {
+        if (err) {
+            console.log(err);
+        };
+    })
+}            
+            
 
 init();
 
