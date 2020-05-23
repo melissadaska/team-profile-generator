@@ -79,7 +79,7 @@ function addMember() {
                     if (addMembers === "yes") {
                         addMember();
                     } else {
-                        // call finishHTML()
+                        // call finalizeHTML()
                     }
                 })
             })
@@ -113,6 +113,8 @@ function initializeHTML() {
 
 
 // add function that adds each member to HTML
+
+// add function to finalizeHTML
 
 init();
 
