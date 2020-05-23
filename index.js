@@ -153,7 +153,7 @@ function addHTML(member) {
         let data = "";
         if(role === "Engineer") {
             const gitHub = member.getGithub();
-            data = `<div class="card bg-dark justify-content-center align-items-center" style="width: 18rem;">
+            data = `<div class="card text-white bg-info mb-3 justify-content-center align-items-center" style="width: 18rem;">
             <div class="col card-header">
                 <h4>${name}</h4>
             </div>
@@ -162,13 +162,13 @@ function addHTML(member) {
             </div>
             <ul class="list-group list-group-flush text">
                 <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email: ${email}</li>
-                <li class="list-group-item">GitHub: ${gitHub}</li>
+                <li class="list-group-item">Email: <a href="mailto:${email}">${email}<a></li>
+                <li class="list-group-item">GitHub: <a href="https://github.com/${gitHub}">${gitHub}<a></li>
             </ul>
         </div>`;
         } else if (role === "Intern") {
             const school = member.getSchool();
-            data = `<div class="card bg-dark justify-content-center align-items-center" style="width: 18rem;">
+            data = `<div class="card text-white bg-info mb-3 justify-content-center align-items-center" style="width: 18rem;">
             <div class="col card-header">
                 <h4>${name}</h4>
             </div>
@@ -177,13 +177,13 @@ function addHTML(member) {
             </div>
             <ul class="list-group list-group-flush text">
                 <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email: ${email}</li>
+                <li class="list-group-item">Email: <a href="mailto:${email}">${email}<a></li>
                 <li class="list-group-item">School: ${school}</li>
             </ul>
         </div>`;
         } else if (role === "Manager") {
             const officeNumber = member.getOfficeNumber();
-            data = `<div class="card bg-dark justify-content-center align-items-center" style="width: 18rem;">
+            data = `<div class="card text-white bg-info mb-3 justify-content-center align-items-center" style="width: 18rem;">
             <div class="col card-header">
                 <h4>${name}</h4>
             </div>
@@ -192,7 +192,7 @@ function addHTML(member) {
             </div>
             <ul class="list-group list-group-flush text">
                 <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email: ${email}</li>
+                <li class="list-group-item">Email: <a href="mailto:${email}">${email}<a></li>
                 <li class="list-group-item">Office Number: ${officeNumber}</li>
             </ul>
         </div>`;
