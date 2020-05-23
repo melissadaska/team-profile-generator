@@ -1,9 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-const Engineer = require("./lib/engineer")
-const Manager = require("./lib/manager")
-const Intern = require("./lib/intern")
+const Engineer = require("./lib/Engineer");
+const Manager = require("./lib/Manager");
+const Intern = require("./lib/Intern");
+
 
 const teamMembers = [];
 
@@ -42,7 +43,7 @@ function addMember() {
         }
 
     ])
-        .then(function(name, role, id, email) {
+        .then(function({name, role, id, email}) {
             let roleInfo = "";
             if (role === "Engineer") {
                 roleInfo = "GitHub username";
@@ -157,7 +158,7 @@ function addHTML(member) {
                 <h4>${name}</h4>
             </div>
             <div class="col card-header">
-                <h4>Engineer</h4>
+                <h4>${role}</h4>
             </div>
             <ul class="list-group list-group-flush text">
                 <li class="list-group-item">ID: ${id}</li>
@@ -172,7 +173,7 @@ function addHTML(member) {
                 <h4>${name}</h4>
             </div>
             <div class="col card-header">
-                <h4>Intern</h4>
+                <h4>${role}</h4>
             </div>
             <ul class="list-group list-group-flush text">
                 <li class="list-group-item">ID: ${id}</li>
@@ -180,14 +181,14 @@ function addHTML(member) {
                 <li class="list-group-item">School: ${school}</li>
             </ul>
         </div>`;
-        } else {
+        } else if (role === "Manager") {
             const officeNumber = member.getOfficeNumber();
             data = `<div class="card bg-dark justify-content-center align-items-center" style="width: 18rem;">
             <div class="col card-header">
                 <h4>${name}</h4>
             </div>
             <div class="col card-header">
-                <h4>Manager</h4>
+                <h4>${role}</h4>
             </div>
             <ul class="list-group list-group-flush text">
                 <li class="list-group-item">ID: ${id}</li>
