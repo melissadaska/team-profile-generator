@@ -1,6 +1,7 @@
 # Team Profile Generator
 
-Follow this link that demonstrates the functionality of the Team Profile Generator! [Team Profile Generator Walkthrough Video]()
+Follow this link that demonstrates the functionality of the Team Profile Generator! [Team Profile Generator Walkthrough Video](https://drive.google.com/file/d/1CXaARUkWBZao6p7Swj5p8Xk6bdDu1mkG/view)
+Follw this link to show that all tests pass! [Team Profile Generator Tests Passing](https://drive.google.com/file/d/1I5TqYP52O9LIARh42rYIS2AXfCxrK9hl/view)
 
   ## Table of Contents
   
